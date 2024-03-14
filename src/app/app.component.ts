@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import { CART } from './cart';
-import { getDiscountAmount, getDiscountedPrice, getPrice, getVAT, parseItem } from './cart-utils';
+import {
+  getDiscountAmount,
+  getDiscountedPrice,
+  getPrice,
+  getVAT,
+  parseItem,
+} from './cart-utils';
 import { CartItem } from './cart-item.entity';
 
 @Component({
@@ -11,12 +17,4 @@ import { CartItem } from './cart-item.entity';
 export class AppComponent {
   items = CART;
   vat = getVAT('IT');
-  getItemPrice(item: CartItem) {
-    const discountedPrice = getDiscountedPrice(item.netPrice, item.discount);
-    return getPrice(discountedPrice * item.quantity, this.vat);
-  }
-
-  getDiscountAmount(item: CartItem) {
-    return getDiscountAmount(item.netPrice, item.discount) * item.quantity;
-  }
 }
